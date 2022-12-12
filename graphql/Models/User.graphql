@@ -1,0 +1,29 @@
+type User {
+  id: ID
+  first_name: String
+  last_name: String
+  middle_name: String
+  contact: String
+  gender: String
+  email: String
+  password: String
+}
+
+type Query {
+  users: [User] @all  
+}
+
+type Mutation {
+  upsertUser(input: UserInput @spread): User @upsert
+}
+
+input UserInput {
+  id: ID
+  first_name: String
+  last_name: String
+  middle_name: String
+  contact: String
+  gender: String
+  email: String
+  password: String @hash
+}
