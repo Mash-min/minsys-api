@@ -1,0 +1,40 @@
+type Product {
+    id: ID
+    name: String
+    description: String
+    item_code: String
+    barcode: String
+    warranty: Int
+    created_at: String
+    updated_at: String
+}
+
+extend type Query {
+    products: [Product] @all
+    productsPaginate(
+        where: _
+            @whereConditions(
+                columns: [
+                    "id"
+                    "name"
+                    "description"
+                    "warranty"
+                    "item_code"
+                    "barcode"
+                ]
+            )
+    ): [Product]! @paginate
+}
+
+extend type Mutation {
+    upsertProduct(input: ProductInput @spread): Product @upsert
+}
+
+input ProductInput {
+    id: ID
+    name: String
+    description: String
+    item_code: String
+    barcode: String
+    warranty: Int
+}

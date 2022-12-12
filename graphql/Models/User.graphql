@@ -1,30 +1,32 @@
 type User {
-  id: ID
-  first_name: String
-  last_name: String
-  middle_name: String
-  contact: String
-  gender: String
-  email: String
-  password: String
+    id: ID
+    first_name: String
+    last_name: String
+    middle_name: String
+    name: String @method(name: "name")
+    contact: String
+    gender: String
+    email: String
+    password: String
 }
 
 type Query {
-  users: [User] @all  
+    users: [User] @all
+    usersPagination: [User] @paginate
 }
 
 type Mutation {
-  upsertUser(input: UserInput @spread): User @upsert
-  deleteUser(id: ID! @eq): User @delete
+    upsertUser(input: UserInput @spread): User @upsert
+    deleteUser(id: ID! @eq): User @delete
 }
 
 input UserInput {
-  id: ID
-  first_name: String
-  last_name: String
-  middle_name: String
-  contact: String
-  gender: String
-  email: String
-  password: String @hash
+    id: ID
+    first_name: String
+    last_name: String
+    middle_name: String
+    contact: String
+    gender: String
+    email: String
+    password: String @hash
 }
