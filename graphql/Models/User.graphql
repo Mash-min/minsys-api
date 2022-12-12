@@ -15,6 +15,7 @@ type Query {
 
 type Mutation {
   upsertUser(input: UserInput @spread): User @upsert
+  deleteUser(id: ID! @eq): User @delete
 }
 
 input UserInput {
