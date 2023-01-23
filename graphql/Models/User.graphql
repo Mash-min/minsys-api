@@ -13,6 +13,7 @@ type User {
 type Query {
     users: [User] @all
     usersPagination: [User] @paginate
+    usersRelay: [User] @paginate(type: "CONNECTION")
 }
 
 type Mutation {
